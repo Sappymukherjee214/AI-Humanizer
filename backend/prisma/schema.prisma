@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String        @id @default(uuid())
+  email            String        @unique
+  passwordHash     String
+  name             String?
+  subscription     String        @default("FREE")
+  credits          Int           @default(10)
+  stripeCustomerId String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  transactions     Transaction[]
+  payments         Payment[]
+}
+
+model Payment {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  stripeSessionId String   @unique
+  amount          Int
+  creditsBought   Int
+  status          String
+  createdAt       DateTime @default(now())
+}
+
+model Transaction {
+  id                   String   @id @default(uuid())
+  userId               String
+  user                 User     @relation(fields: [userId], references: [id])
+  originalText         String
+  humanizedText        String
+  aiProbabilityScore   Float?
+  plagiarismPercentage Float?
+  mode                 String   @default("BALANCED")
+  status               String   @default("COMPLETED")
+  createdAt            DateTime @default(now())
+}

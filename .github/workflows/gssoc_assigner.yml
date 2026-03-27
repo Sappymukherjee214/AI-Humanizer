@@ -1,0 +1,85 @@
+name: GSSoC 2026 Issue Assigner
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    if: (!github.event.issue.pull_request) # Only run on issues, not PRs
+    steps:
+      - name: Auto-Assign Issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const commentBody = context.payload.comment.body.trim().toLowerCase();
+            const user = context.payload.comment.user.login;
+            const issueNumber = context.issue.number;
+
+            // ASSIGN COMMANDS: .take, !assign, /assign
+            if (commentBody === ".take" || commentBody === "!assign" || commentBody === "/assign") {
+              
+              // Check if already assigned
+              if (context.payload.issue.assignees && context.payload.issue.assignees.length > 0) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  body: `Hi @${user}, this issue is already assigned to someone else. Please look for other unassigned issues labeled with 'gssoc26'.`
+                });
+                return;
+              }
+
+              // Assign the user
+              await github.rest.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                assignees: [user]
+              });
+
+              // Post a confirmation comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `🥳 Congratulations @${user}! You've been assigned this issue for **GSSoC 2026**. \n\n⏳ Please try to submit your Pull Request within **3 days**. If you need more time, feel free to ask for an extension in the comments! \n\nHappy coding! 🚀`
+              });
+            }
+
+            // UNASSIGN COMMANDS: .unassign, !unassign, /unassign
+            if (commentBody === ".unassign" || commentBody === "!unassign" || commentBody === "/unassign") {
+              
+              // Check if assigned to the commenter
+              const isAssigned = context.payload.issue.assignees.some(assignee => assignee.login === user);
+              
+              if (!isAssigned) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  body: `Hi @${user}, you are not assigned to this issue.`
+                });
+                return;
+              }
+
+              // Remove the assignment
+              await github.rest.issues.removeAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                assignees: [user]
+              });
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `✅ @${user}, you have been successfully unassigned from this issue. It is now open for other contributors.`
+              });
+            }

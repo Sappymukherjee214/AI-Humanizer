@@ -1,0 +1,52 @@
+name: GSSoC 2026 Stale Issue Unassigner
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run daily at midnight
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  unassignStale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Unassign stale GSSoC issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const staleDays = 3; // Unassign after 3 days of inactivity
+            
+            // Get all issues labeled 'gssoc26' and assigned
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'gssoc26'
+            });
+
+            for (const issue of issues.data) {
+              if (issue.assignees && issue.assignees.length > 0) {
+                // Check last update
+                const lastUpdated = new Date(issue.updated_at);
+                const now = new Date();
+                const diffDays = Math.ceil((now - lastUpdated) / (1000 * 60 * 60 * 24));
+
+                if (diffDays >= staleDays) {
+                  // Post a comment
+                  const user = issue.assignees[0].login;
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issue.number,
+                    body: `🕰️ Hi @${user}, this issue hasn't been updated for **${staleDays} days**. To keep the GSSoC 2026 competition moving, we've unassigned you from this issue so other contributors can take it. \n\nFeel free to re-assign yourself with \`.take\` if you're still interested and ready to submit a PR soon!`
+                  });
+
+                  // Unassign
+                  await github.rest.issues.removeAssignees({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issue.number,
+                    assignees: [user]
+                  });
+                }
+              }
+            }

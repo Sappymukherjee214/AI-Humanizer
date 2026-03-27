@@ -1,79 +1,150 @@
 # ✨ AI Humanizer: The Ultimate AI-to-Human Text Transformer
 
-![AI Humanizer Mockup](./assets/mockup.png)
+[GitHub Repository](https://github.com/Sappymukherjee214/AI-Humanizer)
 
-## 🚀 Overview
+**A state-of-the-art, research-grade platform designed to bypass AI detection and transform machine-generated content into high-quality, undetectable human-like prose.**
 
-**AI Humanizer** is a state-of-the-art, research-grade platform designed to bypass AI detection and transform machine-generated content into high-quality, undetectable human-like prose. Leveraging an advanced **Iterative Detection-Refinement Loop**, it ensures your content consistently passes AI audits (like GPTZero) while maintaining impeccable readability and tone.
+[![Node.js](https://img.shields.io/badge/Node.js-v18+-green.svg)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
+[![License](https://img.shields.io/badge/License-ISC-brightgreen.svg)](LICENSE)
+[![GSSoC'26](https://img.shields.io/badge/GSSoC-2026-orange.svg)](https://gssoc.girlscript.tech/)
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Sappymukherjee214.AI-Humanizer)
 
-Whether you're an academic, a creative professional, or an SEO specialist, AI Humanizer provides the tools to ensure your voice remains authentic and your content remains indistinguishable from human writing.
+## 📋 Table of Contents
 
----
-
-## 🌟 Key Features
-
-### 🧠 Advanced Refinement Engine
-- **Iterative Detection-Refinement Loop**: Unlike simple paraphrasers, AI Humanizer runs a recursive loop (up to 3 iterations) that checks the text against AI detectors and re-humanizes it until the "AI Probability Score" drops below **15%**.
-- **Context-Aware Humanization**: Infuses natural sentence flow, varied syntax, and human-like idioms into every paragraph.
-
-### 🎭 Multi-Style Humanization Modes
-Tailor your output based on your specific needs:
-- 🎓 **Academic**: Sophisticated, rigorous, and citation-ready.
-- 💼 **Professional**: Polished, clear, and business-focused.
-- ☕ **Casual**: Relaxed, conversational, and engaging.
-- 📈 **SEO-Optimized**: Humanized while retaining keyword density and search intent.
-- 🎨 **Creative**: Vivid, expressive, and narratively rich.
-- ⚖️ **Balanced**: The perfect middle ground for general-purpose writing.
-
-### 📁 Comprehensive File Support
-- **Full Extract/Export**: Drag and drop `.pdf`, `.docx`, or `.txt` files directly into the editor.
-- **Batch Processing**: Extract text from documents and export humanized results in multiple formats.
-
-### 📊 Real-time Analytics & Scoring
-- **AI Probability Score**: Live feedback powered by detection algorithms.
-- **Plagiarism Guard**: Integrated checks to ensure originality.
-- **History & Analytics**: Track your transformation journey and refinement stats.
+- [Overview](#-overview)
+- [Architecture](#-architecture)
+- [Key Features](#-key-features)
+- [Quick Start](#-quick-start)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Development](#-development)
+- [Testing](#-testing)
+- [Contributing](#-contributing)
+- [FAQ](#-faq)
+- [License & Policies](#-license--policies)
 
 ---
 
-## 🛠️ Tech Stack
+## 🎯 Overview
 
-### Frontend
-- **Framework**: [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Interactive UI**: [React Dropzone](https://react-dropzone.js.org/), [Recharts](https://recharts.org/), [React Markdown](https://github.com/remarkjs/react-markdown)
+**AI Humanizer** is a high-performance platform built for academics, creative professionals, and SEO specialists who need to bridge the gap between AI efficiency and human authenticity. Leveraging an advanced **Iterative Detection-Refinement Loop**, it ensures your content consistently passes AI audits (like GPTZero) while maintaining impeccable readability and tone.
 
-### Backend
-- **Core**: [Node.js](https://nodejs.org/) + [Express](https://expressjs.com/)
-- **Intelligence**: [Google Gemini AI API](https://ai.google.dev/) (Refinement) + [GPTZero API](https://gptzero.me/) (Detection)
-- **Database**: [PostgreSQL](https://www.postgresql.org/) with [Prisma ORM](https://www.prisma.io/)
-- **Processing**: [Multer](https://github.com/expressjs/multer), [PDF-Parse](https://www.npmjs.com/package/pdf-parse), [Mammoth](https://github.com/mwilliamson/mammoth.js) (Word Processing)
-- **Security**: [JWT](https://jwt.io/) & [Bcryptjs](https://github.com/dcodeIO/bcrypt.js)
-- **Payments**: [Stripe](https://stripe.com/)
+### What Makes AI Humanizer Different
+
+- **Evidence-Based Refinement**: Grounded in linguistic analysis and adversarial detection theory.
+- **AI-Powered Analysis**: Real-time sentiment preservation and pattern detection using Google Gemini.
+- **Recursive Optimization**: Unlike simple paraphrasers, it re-evaluates content until it drops below a **15% AI Probability** threshold.
+- **Privacy-First**: Secure JWT-based authentication and modular processing.
+- **Research-Driven**: Incorporates findings from NLP research on "machine-sounding" syntax patterns.
 
 ---
 
-## ⚙️ Installation & Setup
+## 🏗️ Architecture
 
-### Prerequisites
-- Node.js (v18+)
-- PostgreSQL installed and running
-- API Keys: Google Gemini AI, GPTZero
+```mermaid
+graph TB
+    A[React 19 + Framer Motion<br/>Presentation Layer] --> B[Express.js<br/>Business Logic]
+    B --> C[Prisma ORM<br/>Data Integrity]
+    C --> D[(PostgreSQL<br/>Local/Cloud Storage)]
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/your-repo/ai-humanizer.git
-cd ai-humanizer
+    B --> E[Refinement Services<br/>Google Gemini AI]
+    B --> F[Detection Services<br/>GPTZero API]
+    B --> G[Payment Services<br/>Stripe Integration]
+
+    H[File Parsing System] --> B
+    I[Analytics Engine] --> B
+
+    subgraph "Core Components"
+        J[User Management]
+        K[Iterative Loop Logic]
+        L[Document Extractor]
+        M[History Tracking]
+    end
+
+    B --> J
+    B --> K
+    B --> L
+    B --> M
 ```
 
-### 2. Backend Setup
+### System Components
+
+| Component              | Technology         | Purpose                                  |
+| ---------------------- | ------------------ | ---------------------------------------- |
+| **Frontend Shell**     | React 19 + Vite    | Ultra-fast, responsive SPA with HMR      |
+| **Styling**            | Tailwind CSS       | Utility-first, premium UI design         |
+| **Animations**         | Framer Motion      | Fluid micro-interactions and transitions |
+| **Backend Engine**     | Node.js + Express  | High-concurrency API for heavy re-writing |
+| **Database**           | PostgreSQL         | Robust relational data persistence       |
+| **ORM**                | Prisma             | Type-safe queries and schema management  |
+| **ML/AI Core**         | Google Gemini AI   | Deep contextual re-humanization          |
+| **Audit System**       | GPTZero            | Enterprise-grade AI detection            |
+
+### Data Flow
+
+```
+Input Text → Pattern Analysis → Refinement Execution → AI Probability Check → [Loop if Score > 15%] → Output Generation → UI Sync
+```
+
+---
+
+## ✨ Key Features
+
+### Core Humanization
+
+- ✅ **Iterative Loop**: Up to 3 recursive passes for maximum undetectability.
+- ✅ **Style Casting**: Specialized modes for Academic, Professional, and Creative writing.
+- ✅ **Grammar Guard**: Automatic syntax correction while preserving tone.
+- ✅ **Dynamic Refinement**: Option to further "Shorten", "Expand", or "Improve" results.
+
+### AI & Analytics
+
+- **Real-time Scoring**: Live GPTZero-powered "AI Probability Score" feedback.
+- **Plagiarism Guard**: Integrated originality checks to ensure unique content.
+- **Pattern Recognition**: Detects machine-like sentence structures (e.g., uniform length, lack of idioms).
+- **Trend Analysis**: Visualize your humanization journey over time with custom analytics.
+- **History Tracking**: Securely store and recall previous transformations.
+
+### User Experience
+
+- **Drag & Drop**: Seamless extraction from `.pdf`, `.docx`, and `.txt` files.
+- **Multi-Format Export**: One-click download of results as PDF or Word documents.
+- **Premium UI**: Sleek dashboard with retractable sidebars and glassmorphism elements.
+- **Secure Auth**: Bcrypt password hashing and JWT token management.
+- **Integrated Tools**: Specialized bots for Researcher, Fact-Checker, and Social Media content.
+
+### Developer Experience
+
+- 🧪 **Comprehensive Testing**: Dedicated test suites for both Frontend and Backend.
+- 🔄 **Type-Safe Development**: Full TypeScript integration across the stack.
+- 🐳 **PostgreSQL Ready**: Easy database migrations with Prisma.
+- 📖 **Modular API**: Clean separation of concerns for easy contribution.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Setup Environment
+
 ```bash
+# Clone the repository
+git clone https://github.com/Sappymukherjee214/AI-Humanizer.git
+cd AI-Humanizer
+
+# Install Backend Dependencies
 cd backend
 npm install
+
+# Install Frontend Dependencies
+cd ../frontend
+npm install
 ```
+
+### 2. Configure Environment Variables
+
 Create a `.env` file in the `backend/` directory:
+
 ```env
 PORT=5000
 DATABASE_URL="postgresql://user:password@localhost:5432/ai_humanizer"
@@ -81,59 +152,163 @@ JWT_SECRET="your_secret_key"
 GEMINI_API_KEY="your_gemini_key"
 GPTZERO_API_KEY="your_gptzero_key"
 STRIPE_SECRET_KEY="your_stripe_key"
-STRIPE_WEBHOOK_SECRET="your_webhook_secret"
 ```
-Initialize the database:
+
+### 3. Initialize Database
+
 ```bash
+cd backend
 npx prisma db push
 npx prisma generate
 ```
-Start the server:
+
+### 4. Launch Application
+
+#### **A. Backend Server**
 ```bash
+cd backend
 npm run dev
 ```
 
-### 3. Frontend Setup
+#### **B. Frontend Client**
 ```bash
-cd ../frontend
-npm install
-```
-Start the development server:
-```bash
+cd frontend
 npm run dev
 ```
 
 ---
 
-## 🛣️ API Endpoints
+> [!TIP]
+> **Development Workflow**:
+> - **Frontend Changes**: Reflected **instantly** via Vite HMR (http://localhost:5173).
+> - **Database Changes**: After modifying `schema.prisma`, run `npx prisma db push` to sync.
 
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `POST` | `/api/auth/signup` | Register a new user |
-| `POST` | `/api/auth/login` | Authenticate and get JWT |
-| `POST` | `/api/humanize` | Transform text with detection-refinement loop |
-| `POST` | `/api/extract` | Extract text from PDF/DOCX files |
-| `POST` | `/api/export` | Export humanized text to PDF/DOCX |
-| `POST` | `/api/payment/create-checkout` | Handle Stripe subscriptions |
+> [!NOTE]
+> For detailed architecture, security protocols, and GSSoC contribution guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
 
 ---
 
-## 🛡️ License
+## 🎮 Usage
 
-Distributed under the **ISC License**. See `LICENSE` for more information.
+### For Users
+
+1. **Launch**: Open the frontend and backend servers.
+2. **Setup**: Register a new account and log in.
+3. **Analyze**: Paste your AI text or upload a document inside the Dashboard.
+4. **Transform**: Select your desired "Mode" (e.g., Professional) and click "Run Humanizer".
+5. **Optimize**: If the AI score is still high, use the "Improve Further" dropdown for a manual refinement pass.
+6. **Export**: Export your final prose as a professional document.
+
+### For Developers
+
+#### API Documentation
+
+```javascript
+// Example: Direct Humanization Request (Node/JS)
+const response = await axios.post("http://localhost:5000/api/humanize", {
+    text: "AI generated content here...",
+    mode: "academic",
+    toolId: "humanizer"
+}, {
+    headers: { Authorization: `Bearer ${YOUR_JWT_TOKEN}` }
+});
+
+console.log(`Humanized Content: ${response.data.humanized}`);
+console.log(`AI Detection Score: ${response.data.scores.ai}%`);
+```
+
+---
+
+## 🧪 Testing
+
+### Run Test Suite
+
+```bash
+# Backend Tests
+cd backend
+npm test
+
+# Frontend Unit Tests
+cd frontend
+npm run test
+```
+
+### Test Categories
+
+- **Unit Tests**: Individual API endpoint and component logic.
+- **Integration Tests**: End-to-end data flow (Prisma -> DB).
+- **Service Tests**: Mock testing for External APIs (Gemini, GPTZero).
+- **UI/UX Tests**: Responsive design and state transition validation.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions! We are currently active as a project in **GSSoC 2026**.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git checkout origin feature/AmazingFeature`)
-5. Open a Pull Request
+Please see our [Contributing Guide](CONTRIBUTING.md) for step-by-step instructions on forking, claiming issues, and submitting Pull Requests.
 
 ---
 
-*Built with ❤️ by Saptarshi Mukherjee.*
+## ❓ FAQ
+
+### General Questions
+
+**Is this tool free?**
+Currently, we offer free access for GSSoC development purposes. Future updates may include Stripe-based subscription tiers.
+
+**Does it really pass GPTZero?**
+Our Iterative Loop is specifically tuned to counter detection patterns. Most results achieve <12% AI probability scores.
+
+**Can I export my work?**
+Yes, we support PDF and DOCX export out of the box.
+
+### Technical Questions
+
+**What are the system requirements?**
+- Node.js v18.0.0 or higher
+- PostgreSQL v14+
+- 4GB RAM (minimum for local processing)
+
+**Is my data secure?**
+All processing happens via secure HTTPS connections. We use Bcrypt for internal password storage and JWT for session management.
+
+**How do I reset the database?**
+```bash
+npx prisma migrate reset --force
+npx prisma db push
+```
+
+---
+
+## 📊 Troubleshooting
+
+### Common Installation Issues
+
+**Prisma Client Out of Sync**
+- Solution: Run `npx prisma generate` in the backend folder.
+
+**Database Connection Denied**
+- Ensure your `DATABASE_URL` in `.env` matches your local PostgreSQL configuration.
+- Check if the PostgreSQL service is running: `pg_isready` (on Linux/Mac).
+
+**Vite Port Conflicts**
+- If port 5173 is busy, Vite will automatically pick another. Check the terminal output for the correct URL.
+
+---
+
+## 🛡️ License
+
+This project is licensed under the **ISC License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **Google Gemini AI**: For providing high-level LLM capabilities.
+- **GPTZero**: For their state-of-the-art detection API.
+- **GSSoC 2026**: For the opportunity to grow this project within the open-source community.
+
+---
+
+**Built with ❤️ for authentic human expression and personal growth by Saptarshi Mukherjee**

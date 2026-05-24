@@ -8,6 +8,7 @@ import extractRoutes from './routes/extract.js';
 import exportRoutes from './routes/export.js';
 import authRoutes from './routes/auth.js';
 import paymentRoutes from './routes/payment.js';
+import healthRoutes from './routes/health.js';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use('/api/extract', extractRoutes);
 app.use('/api/export', exportRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/health', healthRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

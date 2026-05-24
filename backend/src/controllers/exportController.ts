@@ -21,8 +21,12 @@ export const handleExport = async (req: Request, res: Response) => {
             buffer = await generateDocxBuffer(text);
             contentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
             extension = 'docx';
+        } else if (format === 'txt') {
+            buffer = Buffer.from(text, 'utf-8');
+            contentType = 'text/plain';
+            extension = 'txt';
         } else {
-            return res.status(400).json({ error: 'Invalid export format. Use "pdf" or "docx".' });
+            return res.status(400).json({ error: 'Invalid export format. Use "pdf", "docx", or "txt".' });
         }
 
         const downloadName = `${fileName || 'humanized_text'}.${extension}`;

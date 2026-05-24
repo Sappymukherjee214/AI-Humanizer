@@ -177,7 +177,7 @@ function App() {
         setTimeout(() => setCopySuccess(false), 2000);
     };
 
-    const handleExport = async (format: 'pdf' | 'docx') => {
+    const handleExport = async (format: 'pdf' | 'docx' | 'txt') => {
         if (!humanizedText) {
             alert('Please generate content first before exporting.');
             return;
@@ -400,10 +400,17 @@ function App() {
                                     </button>
                                     <button
                                         onClick={() => handleExport('docx')}
-                                        className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-indigo-600 transition-all active:scale-95"
+                                        className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-indigo-600 transition-all border-r border-slate-100 active:scale-95"
                                     >
                                         <FileText size={14} />
                                         Export DOCX
+                                    </button>
+                                    <button
+                                        onClick={() => handleExport('txt')}
+                                        className="flex items-center gap-2 px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-indigo-600 transition-all active:scale-95"
+                                    >
+                                        <FileText size={14} />
+                                        Export TXT
                                     </button>
                                 </div>
                                 <button 

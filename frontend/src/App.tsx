@@ -81,11 +81,19 @@ function App() {
     }, []);
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsSidebarCollapsed(window.innerWidth >= 768 && window.innerWidth < 1024);
-        };
-        window.addEventListener('resize', handleResize);
+    const handleResize = () => {
+        const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+        const isDesktop = window.innerWidth >= 1024;
+        if (isTablet) {
+            setIsSidebarCollapsed(true);
+        } else if (isDesktop) {
+            setIsSidebarCollapsed(false);
+        }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
     }, []);
+    
     const fetchProfile = async (token: string) => {
         try {
             const response = await axios.get('http://localhost:5000/api/auth/profile', {
@@ -269,7 +277,7 @@ function App() {
                 <motion.aside 
                     initial={false}
                     animate={{ width: isSidebarCollapsed ? 72 : 256 }}
-                    transition={{ duration: 0.3, ease: 'easeout' }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="glass border-r border-slate-200/50 flex flex-col p-6 hidden md:flex z-20 overflow-hidden relative"
                 >
                     <div className={`flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'} mb-10`}>

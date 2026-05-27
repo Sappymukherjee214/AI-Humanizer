@@ -20,6 +20,7 @@ import {
     Instagram,
     Mail,
     Video,
+    Youtube,
     Facebook,
     ShoppingBag,
     Layout,
@@ -158,6 +159,14 @@ const tools = [
         name: 'TikTok Video Scripts', 
         desc: 'Generate catchy and engaging scripts for TikTok videos, helping to grab your audience\'s attention.', 
         icon: <Video className="text-slate-900" />, 
+    },
+    {
+        id: 'youtube-script',
+        name: 'YouTube Script Generator',
+        desc: 'Create full YouTube video scripts with a Hook, structured Main Content, and a CTA - optimized for audience retention.',
+        icon: <Youtube className="text-red-600" />,
+        badge: 'NEW',
+        color: 'border-red-100 ring-red-50'
     },
     { 
         id: 'facebook', 

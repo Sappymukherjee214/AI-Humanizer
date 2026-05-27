@@ -49,6 +49,20 @@ export const processAITask = async (text: string, mode: string, toolId: string =
         return 'Draft a professional and effective email based on the context provided. Ensure the subject line is catchy and the tone is perfectly suited for the recipient.';
       case 'tiktok':
         return 'Generate a catchy, viral-style TikTok video script. Include visual scene descriptions, text-over-screen prompts, and high-energy dialogue.';
+      case 'youtube-script':
+        return `You are an expert YouTube scriptwriter. Generate a complete, structured video script with these clearly labeled sections:
+
+        **[HOOK]** (0-30 sec): Open with a bold question or surprising statement that grabs attention immediately.
+
+        **[INTRO]** (30-60 sec): Introduce the topic, establish credibility, and tease what the viewer will learn.
+
+        **[MAIN CONTENT]**: Break into numbered sections with headings. Use conversational language. Add [B-ROLL] or [CUT TO] cues where helpful.
+
+        **[CONCLUSION]**: Summarize the top 2-3 takeaways briefly.
+
+        **[CALL TO ACTION]**: Ask viewers to like, comment, and subscribe. Keep it natural, not salesy.
+
+        Write in a conversational human tone optimized for audience retention.`;
       case 'facebook':
         return 'Draft high-converting Facebook Ad copy. Focus on a strong hook, emotional benefits, and a clear, urgent call to action.';
       case 'product':

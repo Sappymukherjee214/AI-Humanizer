@@ -1,321 +1,303 @@
-# 🌤️ Weather Forecast App
- 
-![GSSoC 2026](https://img.shields.io/badge/GSSoC-2026-orange?style=for-the-badge)
-![Node.js](https://img.shields.io/badge/Node.js-18%2B-green?style=for-the-badge&logo=node.js)
-![React](https://img.shields.io/badge/React-Vite-blue?style=for-the-badge&logo=react)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Prisma-316192?style=for-the-badge&logo=postgresql)
-![Redis](https://img.shields.io/badge/Redis-Caching-red?style=for-the-badge&logo=redis)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
-![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge)
- 
-A full-stack weather forecast application with real-time weather data, saved locations, email alerts, and Redis caching — built with the MERN stack + PostgreSQL.
- 
+# 🧠 AI Humanizer: The Ultimate AI-to-Human Text Transformer
+
+[GitHub Repository](https://github.com/Sappymukherjee214/AI-Humanizer)
+
+**A high-performance, research-grade platform designed to bypass AI detection and transform machine-generated content into high-quality, undetectable human-like prose.**
+
+[![Node.js](https://img.shields.io/badge/Node.js-v18+-blue.svg)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
+[![License](https://img.shields.io/badge/License-ISC-green.svg)](LICENSE)
+[![GSSoC'26](https://img.shields.io/badge/GSSoC-2026-orange.svg)](https://gssoc.girlscript.tech/)
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Sappymukherjee214.AI-Humanizer)
+
+## 📋 Table of Contents
+
+- [Overview](#-overview)
+- [Architecture](#-architecture)
+- [Key Features](#-key-features)
+- [Quick Start](#-quick-start)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Development](#-development)
+- [Testing](#-testing)
+- [Contributing](#-contributing)
+- [FAQ](#-faq)
+- [License](#-license)
+
 ---
- 
-## 📸 Screenshots
- 
-> _Screenshots coming soon — contributors can help add them!_
- 
+
+## 🎯 Overview
+
+AI Humanizer is an advanced, full-stack application that solves the growing challenge of AI content detection and machine-like writing. Built with Node.js, React 19, and PostgreSQL, it provides users with a comprehensive **Iterative Detection-Refinement Loop**, ensuring AI-generated text consistently passes audits (like GPTZero) while maintaining impeccable flow.
+
+### What Makes AI Humanizer Different
+
+- **Evidence-Based Refinement**: Grounded in linguistic analysis and adversarial detection theory.
+- **AI-Powered Analysis**: Real-time sentiment preservation and pattern detection via Gemini Pro.
+- **Recursive Optimization**: Rewrites content until the AI Probability Score drops below **15%**.
+- **Privacy-First**: Secure JWT-based authentication and modular processing of sensitive documents.
+- **Research-Driven**: Incorporates findings on machine-sounding syntax to deliver human-like prose.
+
 ---
- 
-## ✨ Features
- 
-- 🔐 User authentication with JWT (register & login)
-- 🌡️ Real-time current weather data
-- 📅 5-day weather forecast
-- 📍 Save favourite locations
-- 🔔 Weather alerts with email notifications
-- ⚡ Redis caching with 20-minute TTL
-- ⏰ Automated email alerts via cron job (runs every 30 mins)
-- 🐳 Docker support for easy local setup
----
- 
-## 🛠️ Tech Stack
- 
-### Backend
-- Node.js + Express.js
-- PostgreSQL + Prisma ORM
-- Redis
-- JWT + bcrypt
-- Nodemailer
-- node-cron
-- Docker
-### Frontend
-- React.js + Vite
-- Tailwind CSS
-- Zustand (state management)
-- Axios
-- React Router v6
----
- 
-## 📁 Project Structure
- 
+
+## 🏗️ Architecture
+
+```mermaid
+graph TB
+    A[React 19 + Vite<br/>Presentation Layer] --> B[Express.js<br/>Business Logic]
+    B --> C[Prisma ORM<br/>Data Integrity]
+    C --> D[(PostgreSQL Server<br/>Data Storage)]
+
+    B --> E[Refinement Engine<br/>Google Gemini AI]
+    B --> F[Detection Engine<br/>GPTZero API]
+    B --> G[Payment Integration<br/>Stripe API]
+
+    H[File System] --> C
+    I[External APIs] --> B
+
+    subgraph "Core Components"
+        J[User Management]
+        K[Iterative Loop Logic]
+        L[Document Extractor]
+        M[Analytics Engine]
+    end
+
+    B --> J
+    B --> K
+    B --> L
+    B --> M
 ```
-weather-forecast-app/
-├── server/
-│   ├── config/
-│   │   ├── db.js
-│   │   └── redis.js
-│   ├── controllers/
-│   │   ├── auth.controller.js
-│   │   ├── weather.controller.js
-│   │   ├── location.controller.js
-│   │   └── alert.controller.js
-│   ├── middleware/
-│   │   └── auth.middleware.js
-│   ├── routes/
-│   │   ├── auth.routes.js
-│   │   ├── weather.routes.js
-│   │   ├── location.routes.js
-│   │   └── alert.routes.js
-│   ├── services/
-│   │   ├── weather.service.js
-│   │   ├── email.service.js
-│   │   └── cron.service.js
-│   ├── prisma/
-│   │   └── schema.prisma
-│   └── index.js
-├── client/
-│   └── src/
-│       ├── components/
-│       │   ├── Navbar.jsx
-│       │   ├── WeatherCard.jsx
-│       │   ├── ForecastCard.jsx
-│       │   └── LocationCard.jsx
-│       ├── pages/
-│       │   ├── Login.jsx
-│       │   ├── Register.jsx
-│       │   └── Dashboard.jsx
-│       ├── services/
-│       │   └── api.js
-│       └── store/
-│           └── authStore.js
-├── docker-compose.yml
-└── README.md
+
+### System Components
+
+| Component              | Technology         | Purpose                                  |
+| ---------------------- | ------------------ | ---------------------------------------- |
+| **Frontend UI**        | React 19 + Vite    | Ultra-fast, responsive web interface     |
+| **Styling**            | Tailwind CSS       | Modern, premium utility-first styling    |
+| **Animations**         | Framer Motion      | Fluid micro-interactions and transitions |
+| **Backend Engine**     | Node.js, Express   | Core business logic and API delivery     |
+| **Database**           | PostgreSQL         | Robust relational data persistence       |
+| **ORM Layer**          | Prisma             | Type-safe database management            |
+| **ML Content Core**    | Google Gemini      | Advanced text re-humanization services   |
+| **Detection Core**     | GPTZero API        | Real-time AI detection scoring           |
+| **Auth System**        | bcrypt, JWT        | Secure user authentication               |
+| **Migration System**   | Prisma CLI         | Database schema evolution                |
+
+### Data Flow
+
 ```
- 
----
- 
-## 🗄️ Database Schema
- 
+Input Text → Pattern Analysis → Refinement → AI Probability Audit → [Reprocess if > 15%] → Output → UI Update
 ```
-User
-├── id
-├── name
-├── email (unique)
-├── password (hashed)
-├── createdAt
-├── locations []
-└── alerts []
- 
-Location
-├── id
-├── city
-├── latitude
-├── longitude
-├── userId (foreign key)
-└── createdAt
- 
-Alert
-├── id
-├── city
-├── alertType
-├── isActive
-├── userId (foreign key)
-└── createdAt
-```
- 
+
 ---
- 
-## 📡 API Endpoints
- 
-### Auth
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| POST | `/api/auth/register` | Register new user | No |
-| POST | `/api/auth/login` | Login and receive JWT token | No |
- 
-### Weather
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| GET | `/api/weather/current?city=Mumbai` | Get current weather | No |
-| GET | `/api/weather/forecast?city=Mumbai` | Get 5-day forecast | No |
- 
-### Locations
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| GET | `/api/locations` | Get all saved locations with weather | Yes |
-| POST | `/api/locations` | Save a new location | Yes |
-| DELETE | `/api/locations/:id` | Delete a saved location | Yes |
- 
-### Alerts
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| GET | `/api/alerts` | Get all alerts | Yes |
-| POST | `/api/alerts` | Create a weather alert | Yes |
-| DELETE | `/api/alerts/:id` | Delete an alert | Yes |
- 
+
+## ✨ Key Features
+
+### Core Humanization
+
+- ✅ **Iterative Loop**: Up to 3 recursive passes for maximum undetectability.
+- ✅ **Style Casting**: Specialized modes for Academic, Professional, and Creative needs.
+- ✅ **Grammar Guard**: Automatic syntax correction while preserving tone.
+- ✅ **Tone Consistency**: Ensures the core message remains indistinguishable from human writing.
+
+### AI & Analytics
+
+- **Real-time Scoring**: Integrated GPTZero audits with live reporting.
+- **Plagiarism Guard**: Built-in verification to ensure original content.
+- **Pattern Recognition**: Detects machine-like sentence structures and repetitive syntax.
+- **Trend Analysis**: Visualize your "Humanization Journey" with interactive charts.
+- **ML Integration**: Context-aware re-writing that understands cultural nuances.
+
+### User Experience
+
+- **File Support**: Drag and drop extraction for `.pdf`, `.docx`, and `.txt` files.
+- **Multi-Export**: One-click download of humanized results in multiple formats.
+- **Premium Dashboard**: Retractable sidebars, glassmorphism UI, and dark/light modes.
+- **Secure Authentication**: Fully encrypted user data and session management.
+- **Data Management**: Full export/delete capabilities for project history.
+
+### Developer Experience
+
+- 🧪 **Comprehensive Testing**: Dedicated test suites for both Frontend and Backend.
+- 🔄 **Type-Safe Stack**: Full TypeScript integration across the entire application.
+- 🐳 **Docker Ready**: Standardized environments for consistent development.
+- 📖 **Self-Documenting API**: Clean, RESTful endpoint architecture.
+
 ---
- 
-## ⚙️ Setup and Installation
- 
-### Prerequisites
-- Node.js v18 or higher
-- Docker Desktop
-- OpenWeatherMap API key (free at [openweathermap.org](https://openweathermap.org))
-- Gmail account with App Password enabled
-### 1. Clone the repository
+
+## 🚀 Getting Started
+
+### 1. Setup Environment
+
 ```bash
-git clone https://github.com/riya-dumbare/Weather-Forecast.git
-cd Weather-Forecast
-```
- 
-### 2. Setup backend
-```bash
-cd server
+# Clone the repository
+git clone https://github.com/Sappymukherjee214/AI-Humanizer.git
+cd AI-Humanizer
+
+# Initialize Backend
+cd backend
 npm install
+# Create .env based on the template
 cp .env.example .env
-```
- 
-Fill in your `.env` file:
-```env
-PORT=5000
-DATABASE_URL=postgresql://weather_user:weather_pass@localhost:5432/weather_db
-REDIS_URL=redis://localhost:6379
-JWT_SECRET=your_long_random_secret
-WEATHER_API_KEY=your_openweathermap_key
-EMAIL_USER=your_gmail@gmail.com
-EMAIL_PASS=your_gmail_app_password
-```
- 
-### 3. Start PostgreSQL and Redis with Docker
-```bash
-docker-compose up -d
-```
- 
-### 4. Run database migrations
-```bash
-cd server
-npx prisma migrate dev
-```
- 
-### 5. Start the backend server
-```bash
-npm run dev
-```
- 
-### 6. Setup and start the frontend
-```bash
-cd client
+
+# Initialize Frontend
+cd ../frontend
 npm install
+```
+
+### 2. Launch Application
+
+#### **A. Backend API (Primary)**
+
+```bash
+cd backend
+npx prisma db push
 npm run dev
 ```
- 
-### 7. Open the app
+
+#### **B. Frontend Client (Web)**
+
+```bash
+cd frontend
+npm run dev
 ```
-Frontend  →  http://localhost:5173
-Backend   →  http://localhost:5000
-```
- 
+
+_The application will be available at http://localhost:5173._
+
 ---
- 
-## ⚡ How Caching Works
- 
-Every weather request checks Redis first before calling the OpenWeatherMap API.
- 
-```
-Request comes in for city "Mumbai"
-        |
-Check Redis cache
-        |
-   Found? ──── Yes ──── Return cached data (source: cache)
-        |
-        No
-        |
-Call OpenWeatherMap API
-        |
-Save response in Redis with 20 min TTL
-        |
-Return data to user (source: api)
-```
- 
+
+## 🛠️ Developer Workflow
+
+> [!TIP]
+> **Prisma Studio**: Use `npx prisma studio` in the backend directory to instantly visualize and edit your local database.
+
 ---
- 
-## 🔔 How Weather Alerts Work
- 
-A cron job runs every 30 minutes and checks all active alerts against current weather conditions.
- 
-```
-Cron job runs every 30 minutes
-        |
-Fetch all active alerts from database
-        |
-For each alert → get current weather for that city
-        |
-Does weather match the alert type?
-        |
-   Yes ──── Send email notification to user
-        |
-   No  ──── Do nothing, check again in 30 minutes
-```
- 
-**Supported alert types:**
-| Alert Type | Triggers On |
-|------------|-------------|
-| `rain` | Rain, Drizzle, Thunderstorm |
-| `storm` | Thunderstorm, Tornado |
-| `snow` | Snow |
-| `heat` | Temperature > 40°C |
-| `fog` | Fog, Mist, Haze |
- 
+
+> [!TIP]
+> **Contributing Workflow**: If you are contributing specifically to the Web frontend, ensure the **Backend API** is running so the dashboard can fetch state.
+
+> [!NOTE]
+> For detailed architecture, sidecar management, and GSSoC'26 guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
+
 ---
- 
-## 🔐 Authentication Flow
- 
+
+## 🎮 Usage
+
+### For Users
+
+1. **Launch**: Open both the frontend and backend servers.
+2. **Setup**: Create your profile via the secure Sign In modal.
+3. **Analyze**: Paste your AI text or upload a document for pattern analysis.
+4. **Transform**: Select your specialization (e.g., "Academic") and click "Run Humanizer".
+5. **Results**: View your AI score and export the humanized prose.
+
+### For Developers
+
+#### API Usage
+
+```javascript
+// Request for humanization
+const response = await fetch("/api/humanize", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ 
+    text: "AI text...", 
+    mode: "professional" 
+  })
+});
+
+const data = await response.json();
+console.log(data.humanized);
 ```
-Register:
-User sends name, email, password
-→ Password hashed with bcrypt (10 salt rounds)
-→ User saved to PostgreSQL
-→ Success response
- 
-Login:
-User sends email, password
-→ Find user by email
-→ Compare password with stored hash
-→ Generate JWT token (expires in 7 days)
-→ Return token to client
- 
-Protected Routes:
-Request arrives with Authorization: Bearer <token>
-→ Middleware verifies token using JWT_SECRET
-→ Attach user info to req.user
-→ Allow request to proceed
+
+#### CLI Tools
+
+```bash
+# Database seeding
+npx prisma db seed
+
+# Type generation
+npx prisma generate
 ```
- 
+
 ---
- 
+
+## 🧪 Testing
+
+### Run Test Suite
+
+```bash
+# All tests (Root)
+npm run test
+
+# Frontend specific
+cd frontend && npm test
+
+# Backend specific
+cd backend && npm test
+```
+
+### Test Categories
+
+- **Unit Tests**: Core function/component testing.
+- **Integration Tests**: Database and service integration (Prisma).
+- **Service Tests**: External API mocking (Gemini/GPTZero).
+- **UI Tests**: Headless component and accessibility verification.
+
+---
+
 ## 🤝 Contributing
- 
-We welcome contributions from everyone! This project is part of **GSSoC 2026**.
- 
-To get started:
-1. Check the [open issues](https://github.com/riya-dumbare/Weather-Forecast/issues) — look for `good-first-issue` or `easy` labels
-2. Read the [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines
-3. Fork the repo, make your changes, and open a Pull Request
-Whether it's fixing a bug, improving UI, adding a new feature, or improving docs — all contributions are welcome! 🙌
- 
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md).
+
+### Development Workflow
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make your changes with tests
+4. Commit your changes: `git commit -m 'Add amazing feature'`
+5. Push to the branch: `git push origin feature/amazing-feature`
+6. Open a Pull Request
+
 ---
- 
-## 📄 License
- 
-This project is licensed under the [MIT License](./LICENSE).
- 
+
+## ❓ FAQ
+
+### General Questions
+
+**Is this a plagiarism tool?**
+No. It is a refinement tool for AI-generated text to restore human flow and tone.
+
+**Are my documents stored?**
+Data is stored securely in your private project history. You can delete it at any time.
+
+**How are the results calculated?**
+Results are based on an adversarial loop between the Refinement Engine (Gemini) and the Detection Audit (GPTZero).
+
+### Technical Questions
+
+**What are the system requirements?**
+- Node.js v18.0.0+
+- PostgreSQL v14+
+- Modern Browser (Chrome, Firefox, Safari)
+
+**How do I backup my data?**
+Database backups are available via standard `pg_dump` or Prisma CLI export strategies.
+
 ---
- 
-## 👩‍💻 Author
- 
-Built by [Riya Dumbare](https://github.com/riya-dumbare) as a full-stack learning project covering backend APIs, databases, caching, authentication, scheduled jobs, and React frontend development.
- 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/riya-dumbare)
+
+## 🛡️ License
+
+This project is licensed under the **ISC License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **Research Core**: Based on NLP findings on adversarial AI-detection patterns.
+- **Open Source**: Built with React, Vite, Prisma, and PostgreSQL.
+- **GSSoC 2026**: Special thanks to the GirlScript community for supporting this project.
+
+---
+
+**Built with ❤️ for authentic human expression and personal growth by Saptarshi Mukherjee**

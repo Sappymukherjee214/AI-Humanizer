@@ -67,6 +67,7 @@ function App() {
             case 'instagram': return "Tell me about your photo or video for a great caption...";
             case 'emails': return "Describe the context of the email you need to write...";
             case 'tiktok': return "What should the TikTok video be about? Describe the concept...";
+            case 'youtube-script': return "Enter your video topic, target audience, tone (e.g. fun, educational), and 3-5 key points to cover...";
             case 'product': return "Describe your product features and target audience...";
             case 'academic': return "Enter an academic topic you need support with...";
             default: return `Enter text for ${selectedTool.name}...`;
